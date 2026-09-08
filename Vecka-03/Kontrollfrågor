@@ -1,0 +1,83 @@
+Kap: 3
+
+
+3.1	IP-adressen säger var enheten finns, mac-adressen vem enhten är
+
+3.2	Den delar upp ipadressen i två delar, en del visar vilket nätverk och en del visar enheten
+	
+3.3	Den första adressen och den sista tex. 192.168.1.0 är nät adressen och 192.168.1.63 är broadcast
+	så 1.1 till 1.62 är lediga till enheter
+
+3.4	Blocksteget för /26 är 64. Man anväder det för att dela upp nätet i mindre delar
+
+3.5	Om gatewayen ligger i ett annat nät kommer du inte kunna nå den och då inte heller nå någon annan
+	utan för dit lokala nät
+
+3.6	Den kan bara nå enheter i sitt eget lokalanät
+
+3.7	IP-adress, Nätmask, Default-gateway och DNS-server. Leasetime säger hur länge dom gäller
+
+3.8	Vem som hellst kan ha en statisk ip men oftast ges det exempelvis till en Router, Server
+	Skrivare för att det är enheter som används ofta och om dom är statiska så slipper man leta
+
+3.9	Lättaste sättet är att se om du har en tilldelad ip, har du inte det är det ett DHCP problem.
+	Har du en ip men internetsidor inte laddar in så är det DNS
+
+3.10	Det betyder att datorn inte kan nå DHCP-servern och därför gör sin egen genom APIPA
+
+3.11	Eftersom det är 192.168.1.200/26 vet vi också att det är 255.255.255.192
+	256-192=64
+	Därför startar dom olika näten på 192.168.1.0
+					  192.168.1.64
+					  192.168.1.128
+					  192.168.1.192
+	och slutar på			  192.168.1.256
+	IP-adress 200 ligger mellan 192 och 255 alltså hamnar vi i det nätet
+	Vår näradress bli 		192.168.1.192
+	vår broadcastadress blir	192.168.1.255
+	adressintervallet blir 	192.168.1.193 - 192.168.1.254
+
+3.12	10.0.0.6/30. /30 ger oss 255.255.255.252
+				 256-252=4
+	blockstegn blir då 4
+	vi har ip address 10.0.0.6 allstå hamnar vi i steg 2
+	näradressen är 10.0.0.4 och broadcastadress 10.0.0.7 alltså har vi kan .5 och .6
+	Det får plats 2st enheter på det nätet
+
+3.13	Med /26 blir deras nät
+	Första: Nätadress 192.168.2.0
+		Broadcast 192.168.2.63
+		Intervall 192.168.2.1 - 192.168.2.62
+
+	Andra:  Nätadress 192.168.2.64
+		Broadcast 192.168.2.127
+		Intervall 192.128.2.65 - 192.168.2.126
+
+	Tredje: Nätadress 192.168.2.128
+		Broadcast 192.168.2.191
+		Intervall 192.168.2.129 - 192.168.2.190
+
+	Sparad:	Nätadress 192.168.2.192
+		Broadcast 192.168.2.255
+		Intervall 192.168.2.193 - 192.168.2 254
+
+3.14	Gatwayen ligger i fel nät
+
+3.15 	Frågar vilken port datorn sitter i
+
+3.16	En nätmask fungerar som en gräns som bestämmer vilka siffror i en IP-adress som tillhör nätverket och vilka som tillhör den specifika datorn
+	Även om två datorer har adresser som börjar på samma siffror kan de ha olika nätmasker inställda vilket flyttar gränsen
+	Om gränsen flyttas ser datorerna adresserna på olika sätt vilket gör att den ena datorn kan se början av adressen som en del av sitt nät medan den andra ser det som ett helt annat nätverk
+	Det är alltså inte bara IP-adressen som avgör grupperingen, utan nätmasken som drar linjen för var nätverket slutar och datorns unika ID börjar
+	Utan exakt samma nätmask kan adresser som ser lika ut hamna på helt olika digitala öar och kommer inte att kunna prata med varandra direkt
+
+
+
+Återblick:
+
+3.17	Running-config är den config som används just nu men inte nödvändigtvis den som används vid en omstart
+	Startup-config är den config som är sparad och kommer användas vid omstart
+
+3.18	Swtichen arbetar på lager 2 och routern på lager 3
+
+3.19	Den frågar efter mac-adressen på sin default-gateway
